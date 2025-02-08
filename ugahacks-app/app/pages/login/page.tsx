@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import LoginButton from '@/components/LoginButton';
 import RetrieveFile from '../../../components/RetrieveFile';
 
 const LoginPage: React.FC = () => {
@@ -54,7 +55,7 @@ const LoginPage: React.FC = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </label>
-          <button type="submit" className="btn btn-primary w-full">Login</button>
+          <LoginButton />
         </form>
         <h3 className="text-center mt-4">Don't have an account? <a href="/pages/signup" className="text-primary">Sign Up</a></h3>
       </div>
