@@ -10,7 +10,7 @@ const Navbar: React.FC = () => {
         <div className="navbar bg-base-100">
   <div className="navbar-start">
     <div className="dropdown">
-      <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
+      <div tabIndex={0} role="button" className="btn btn-primary btn-circle">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-5 w-5"
@@ -27,17 +27,18 @@ const Navbar: React.FC = () => {
       <ul
         tabIndex={0}
         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-        <li><a onClick={() => router.push('/pages/home')}>Homepage</a></li>
-        <li><a onClick={() => router.push('/pages/about')}>About</a></li>
-        <li><a onClick={() => router.push('/pages/profile')}>Profile</a></li>
+        <li><a className={"text-primary"} onClick={() => router.push('/pages/home')}>Homepage</a></li>
+        <li><a className={"text-primary"} onClick={() => router.push('/pages/about')}>About</a></li>
+        <li><a className={"text-primary"} onClick={() => router.push('/pages/profile')}>Profile</a></li>
       </ul>
     </div>
   </div>
   <div className="navbar-center">
     <a className="btn btn-ghost text-xl" onClick={() => router.push('/pages/home')}>Mayflower</a>
   </div>
-  <div className="navbar-end">
-    <button className="btn btn-ghost btn-circle">
+  <div className="navbar-end space-x-4">
+    <button className='btn btn-outline btn-secondary' onClick={() => router.push('/pages/signup')}>Signup</button>
+    <button className="btn btn-circle btn-primary">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="h-5 w-5"
@@ -51,7 +52,7 @@ const Navbar: React.FC = () => {
           d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
       </svg>
     </button>
-    <button className="btn btn-ghost btn-circle">
+    <button className="btn btn-circle btn-primary">
       <div className="indicator">
         <svg
           xmlns="http://www.w3.org/2000/svg"

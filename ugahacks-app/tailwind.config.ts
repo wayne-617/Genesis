@@ -37,7 +37,7 @@ const config: Config = {
 		daisyui,
 	],
 	daisyui: {
-		themes: ["aqua"],
+		themes: ["forest"],
 	}
 };
 export default config;
