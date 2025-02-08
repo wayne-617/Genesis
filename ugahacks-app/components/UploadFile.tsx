@@ -22,8 +22,8 @@ export const uploadToPinata = async (email: string, username: string, password: 
       body: JSON.stringify(jsonData),
       headers: {
         'Content-Type': 'application/json',
-        'pinata_api_key': 'yourPinataApiKey',
-        'pinata_secret_api_key': 'yourPinataSecretApiKey'
+        'pinata_api_key': 'd33f889edd11cecaf464', // Replace with your actual Pinata API key
+        'pinata_secret_api_key': 'bcaae33a3d391957dab95c8c54ca366b0357cacaf2a669663b8fdefc8a32b84a' // Replace with your actual Pinata Secret API key
       }
     });
 
