@@ -2,6 +2,8 @@
 
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';  // Correct imports
+//import uploadPinata from './pinataUpload.js';
+
 
 export default function App() {
   return (
@@ -21,13 +23,29 @@ export default function App() {
 }
 
 function Page1() {
-  return <div>Page 1 Content</div>;
+  const handleUpload = async () => {
+    try{
+      //const filePath = '../testData/pinata.png';
+      //const result = await uploadPinata();
+      //console.log("Uploading results ", result);
+    }catch(e){
+      console.log("Error uploading file ", e);
+    }
+  }
+
+  return (
+  <div>
+    <p>Page 1 Content</p>
+    <button className="btn" onClick={handleUpload}>Upload</button>
+  </div>
+  );
+
 }
 
 function Home() {
   return (
     <div className="flex justify-center ...">
-      <button className="btn btn-outline btn-primary">Hi There</button>
+      <button className="btn">Hi</button>
     </div>
   );
 }
