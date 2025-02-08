@@ -53,6 +53,7 @@ const UploadFile: React.FC<UploadFileProps> = ({ email, username, password }) =>
       console.error('Upload failed:', error);
       setUploading(false);
     }
+    console.log(cid);
   };
 
   return (
