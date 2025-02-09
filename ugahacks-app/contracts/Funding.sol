@@ -7,6 +7,7 @@ contract Funding {
         address payable creator;
         string title;
         string description;
+        string image;
         uint256 goalAmount;
         uint256 raisedAmount;
         uint256 amountWithdrawn; // how much the creator has taken from the goal
@@ -46,7 +47,7 @@ contract Funding {
     event Debug(string message, uint256 supportingVotes, uint256 raisedAmount, uint256 ratio);
 
 
-    function createProject(string memory _title, string memory _description, uint256 _goalAmount, uint256 _duration) public {
+    function createProject(string memory _title, string memory _description, string memory _image, uint256 _goalAmount, uint256 _duration) public {
         require(_goalAmount > 0, "Goal amount must be greater than 0");
         require(_duration > 0, "Duration must be greater than 0");
 
@@ -56,6 +57,7 @@ contract Funding {
             creator: payable(msg.sender),
             title: _title,
             description: _description,
+            image: _image,
             goalAmount: _goalAmount,
             raisedAmount: 0,
             amountWithdrawn: 0,
@@ -172,8 +174,54 @@ contract Funding {
 
         return ratio;
     }
-    
+
+        
     function division(uint256 num1, uint256 num2) public pure returns (uint256) {
         return num1 * 100 / num2;
+    }
+
+    function getAllProjects() public view returns (Project[] memory) {
+        return projects;
+    }
+
+    function getProject(uint256 projectId) public view returns (
+        uint256 id,
+        address creator,
+        string memory title,
+        string memory description,
+        string memory image,
+        uint256 goalAmount,
+        uint256 raisedAmount,
+        uint256 amountWithdrawn,
+        uint256 supportingVotes,
+        uint256 deadline,
+        bool isActive
+    ) {
+        Project memory project = projects[projectId];
+        return (
+            project.id,
+            project.creator,
+            project.title,
+            project.description,
+            project.image,
+            project.goalAmount,
+            project.raisedAmount,
+            project.amountWithdrawn,
+            project.supportingVotes,
+            project.deadline,
+            project.isActive
+        );
+    }
+
+    function getContribution(uint256 projectId, address contributor) public view returns (uint256) {
+        return projectContributions[projectId][contributor];
+    }
+
+    function getVoteChoice(uint256 projectId, address voter) public view returns (bool) {
+        return voteChoice[projectId][voter];
+    }
+
+    function getProjectContributors(uint256 projectId) public view returns (address[] memory) {
+        return projectContributors[projectId];
     }
 }
