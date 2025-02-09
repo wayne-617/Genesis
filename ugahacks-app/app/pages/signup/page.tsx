@@ -2,11 +2,14 @@
 
 import React, { useState } from 'react';
 import UploadFile, { uploadToPinata } from '@/components/UploadFile';
+import Cookies from 'js-cookie';
+import { useRouter } from 'next/navigation';
 
 const SignupPage: React.FC = () => {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -15,6 +18,8 @@ const SignupPage: React.FC = () => {
     try {
       await uploadToPinata(email, username, password);
       console.log('Information uploaded successfully');
+      Cookies.set('loggedInUser', username);
+      window.location.href = '/pages/home';
     } catch (error) {
       console.error('Upload failed:', error);
     }
