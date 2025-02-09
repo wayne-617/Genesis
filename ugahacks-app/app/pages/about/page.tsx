@@ -11,7 +11,7 @@ const AboutPage: React.FC = () => {
       </div>
       <div className="flex flex-col items-center space-y-4 bg-neutral p-16 rounded-lg mr-48 w-1/2">
         <h2 className="text-4xl font-semibold text-white">Our Mission</h2>
-        <p className="text-lg text-white">blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah</p>
+        <p className="text-lg text-white">Genesis is a pioneering crowdfunding platform designed to empower creators and provide transparency for contributors. Built as a Kickstarter-like application, Genesis enables users to launch projects and receive funding in cryptocurrency. Unlike traditional crowdfunding, our platform ensures financial accountability by locking a majority of the funds until the full funding goal is met. Developers receive a small portion upfront, while the rest remains secured. Contributors also have the power to safeguard their investments—if a project fails to meet expectations, patrons can vote for cancellation, triggering a refund of the remaining funds. With Genesis, innovation and trust go hand in hand.</p>
       </div>
     </div>
   );
