@@ -40,7 +40,7 @@ const Navbar: React.FC = () => {
       </div>
       <div className="navbar-end space-x-4">
         <button className='btn btn-outline btn-secondary' onClick={() => router.push('/pages/signup')}>Signup</button>
-        <button className="btn btn-circle btn-primary">
+        <button className="btn btn-circle btn-primary" onClick={() => router.push('/pages/projectbrowser')}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"

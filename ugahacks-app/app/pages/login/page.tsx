@@ -3,35 +3,35 @@
 import React, { useState } from 'react';
 import { retrieveFromPinata } from '@/components/RetrieveFile';
 import Cookies from 'js-cookie';
-
+import { useRouter } from 'next/navigation';
 
 const LoginPage: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [submitted, setSubmitted] = useState(false);
-  const[retrievedData, setRetreivedData] = useState<any | null>(null);
+  const [retrievedData, setRetrievedData] = useState<any | null>(null);
   const [loginSuccess, setLoginSuccess] = useState<boolean | null>(null);
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
-    //username, password, handleRetrieve
-    await retrieveFromPinata(username,password,handleRetrieve);
+    await retrieveFromPinata(username, password, handleRetrieve);
   };
 
   const handleRetrieve = (success: boolean, data?: any) => {
     setLoginSuccess(success);
-    setRetreivedData(data);
+    setRetrievedData(data);
     setSubmitted(false);
-    if(success){
-      
-      Cookies.set('loggedInUser', data.username)
+    if (success) {
+      Cookies.set('loggedInUser', data.username);
+      window.location.href = '/pages/home'; // This will navigate to the homepage and refresh the window
     }
   };
 
   return (
     <div className="flex flex-col justify-center items-center h-screen bg-gray-100">
-      <div className="bg-white text-gray-800 rounded-lg shadow-lg p-8 w-96">
+      <div className="bg-white text-gray-800 rounded-lg shadow-lg p-8 w-1/3">
         <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
         <form onSubmit={handleSubmit}>
           <label className="input input-bordered flex items-center gap-2 mb-4">

@@ -44,6 +44,12 @@
     @apply font-agrandir font-bold;
   }
 
+  .dropdown-left {
+    right: 0;
+    left: auto;
+    transform: translateX(-100%);
+  }
+
 }
 @tailwind components;
 @tailwind utilities;
