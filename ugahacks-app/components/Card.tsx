@@ -10,7 +10,7 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ title, image, desc, onClick }) => {
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden w-60 h-80 cursor-pointer" onClick={onClick}>
+    <div className="bg-primary rounded-lg shadow-md overflow-hidden w-60 h-80 cursor-pointer" onClick={onClick}>
       <div className="relative w-full h-40 border-b border-gray-300">
         <Image src={image} alt={title} layout="fill" objectFit="contain" />
       </div>

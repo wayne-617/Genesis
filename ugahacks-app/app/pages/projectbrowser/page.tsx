@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react';
 import Card from '@/components/Card';
 import { getAllProjects } from '@/utils/viem';
 import { Project } from '@/utils/types';
+import Cookies from 'js-cookie';
+
 
 const ProjectBrowserPage: React.FC = () => {
   const router = useRouter();
@@ -15,13 +17,17 @@ const ProjectBrowserPage: React.FC = () => {
 
   useEffect(() => {
     const loadProjects = async () => {
+      console.log('loadProjects() called');
       try {
         const allProjects = await getAllProjects();
+        console.log('Projects loaded:', allProjects);
         setProjects(allProjects);
       } catch (err) {
         const error = err as Error;
+        console.error('Failed to load projects:', error.message);
         setError('Failed to load projects: ' + error.message);
       } finally {
+        console.log('Loading state set to false');
         setLoading(false);
       }
     };
@@ -38,17 +44,31 @@ const ProjectBrowserPage: React.FC = () => {
     // Add more cards as needed
   ];
 
-  const handleCardClick = (title: string) => {
-    router.push(`/project/${encodeURIComponent(title)}`);
+  const handleCardClick = (project:Project) => {
+    Cookies.set('selectedProject', String(project.id));
+    router.push(`/pages/project`);
+    
+  };
+
+  const handleTestButtonClick = async () => {
+    try {
+      const allProjects = await getAllProjects();
+      console.log('Test button clicked. Projects loaded:', allProjects);
+    } catch (err) {
+      const error = err as Error;
+      console.error('Test button click failed to load projects:', error.message);
+    }
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 overflow-y-auto p-4">
+    <div className="flex flex-col justify-center items-center h-screen bg-gray-100">
+      <h1 className="text-3xl font-bold mb-8">Projects</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 overflow-y-auto p-4 bg-neutral rounded-lg">
         {projects.map((project, index) => (
-          <Card key={index} title={project.title} image={project.image} desc={project.description} onClick={() => handleCardClick(project.title)} />
+          <Card key={index} title={project.title} image={project.image} desc={project.description} onClick={() => handleCardClick(project)} />
         ))}
       </div>
+      
     </div>
   );
 };

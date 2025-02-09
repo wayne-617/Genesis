@@ -112,7 +112,7 @@ const UserNavbar: React.FC = () => {
         </div>
       </div>
       <div className="navbar-center">
-        <a className="btn btn-ghost text-xl text-white" onClick={() => router.push('/pages/home')}>Genesis</a>
+        <h1><a className="btn btn-ghost text-xl text-white" onClick={() => router.push('/pages/home')}>Genesis</a></h1>
       </div>
       <div className="navbar-end space-x-4">
         <button className='btn btn-outline btn-secondary' onClick={handleWalletButtonClick}>

@@ -1,4 +1,5 @@
 export interface Project {
+    largeNumber: any;
     id: number;
     creator: string;
     title: string;
