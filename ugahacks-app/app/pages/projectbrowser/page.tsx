@@ -1,51 +1,33 @@
 'use client';
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Card from '@/components/Card';
+import { getAllProjects } from '@/utils/viem';
+import { Project } from '@/utils/types';
 
 const ProjectBrowserPage: React.FC = () => {
   const router = useRouter();
 
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
-  // async function loadPosts(): Promise<void> {
-  //   try {
-  //     const allPosts = await getAllPosts();
-  //     const total = await getTotalPosts();
+  useEffect(() => {
+    const loadProjects = async () => {
+      try {
+        const allProjects = await getAllProjects();
+        setProjects(allProjects);
+      } catch (err) {
+        const error = err as Error;
+        setError('Failed to load projects: ' + error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  //     // Fetch content from IPFS for each post
-  //     const postsWithContent = await Promise.all(
-  //       allPosts.map(async (post: ContractPost): Promise<Post> => {
-  //         try {
-  //           const url = await pinata.gateways.convert(post.message)
-  //           const response = await fetch(url);
-  //           const content = await response.json();
-  //           return {
-  //             poster: post.poster,
-  //             message: content.message,
-  //             imageUrl: content.imageUrl || null,
-  //             timestamp: new Date(Number(post.timestamp) * 1000).toLocaleString()
-  //           };
-  //         } catch (err) {
-  //           console.log(err)
-  //           // If fetching fails, return the message as is
-  //           return {
-  //             poster: "",
-  //             message: "",
-  //             imageUrl: null,
-  //             timestamp: ""
-  //           };
-  //         }
-  //       })
-  //     );
-
-  //     setPosts(postsWithContent);
-  //     setTotalPosts(Number(total));
-  //   } catch (err) {
-  //     const error = err as Error;
-  //     setError('Failed to load posts: ' + error.message);
-  //   }
-  // }
+    loadProjects();
+  }, []);
 
   const cards = [
     { title: 'Project 1', image: '/logo.png', desc: 'Description for card 1' },
@@ -63,8 +45,8 @@ const ProjectBrowserPage: React.FC = () => {
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 overflow-y-auto p-4">
-        {cards.map((card, index) => (
-          <Card key={index} title={card.title} image={card.image} desc={card.desc} onClick={() => handleCardClick(card.title)} />
+        {projects.map((project, index) => (
+          <Card key={index} title={project.title} image={project.image} desc={project.description} onClick={() => handleCardClick(project.title)} />
         ))}
       </div>
     </div>
