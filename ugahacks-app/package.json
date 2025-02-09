@@ -11,7 +11,9 @@
 	"dependencies": {
 		"@fortawesome/fontawesome-svg-core": "^6.7.2",
 		"@fortawesome/free-brands-svg-icons": "^6.7.2",
+		"@fortawesome/free-solid-svg-icons": "^6.7.2",
 		"@fortawesome/react-fontawesome": "^0.2.2",
+		"js-cookie": "^3.0.5",
 		"next": "14.2.5",
 		"pinata": "^0.1.10",
 		"pinata-starter": "file:",
@@ -20,6 +22,7 @@
 	},
 	"devDependencies": {
 		"@types/cookie": "^0.6.0",
+		"@types/js-cookie": "^3.0.6",
 		"@types/node": "^20",
 		"@types/react": "^18",
 		"@types/react-dom": "^18",

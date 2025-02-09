@@ -1,11 +1,11 @@
 "use client";
 
-
+import Home from './pages/home/page';
 
 export default function Root() {
 	return(
 		<div>
-			<p>sdf</p>
+			<Home />;
 		</div>
 	);
 }

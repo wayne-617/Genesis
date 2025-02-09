@@ -2,6 +2,8 @@
 
 import React, { useState } from 'react';
 import { retrieveFromPinata } from '@/components/RetrieveFile';
+import Cookies from 'js-cookie';
+
 
 const LoginPage: React.FC = () => {
   const [username, setUsername] = useState('');
@@ -21,6 +23,10 @@ const LoginPage: React.FC = () => {
     setLoginSuccess(success);
     setRetreivedData(data);
     setSubmitted(false);
+    if(success){
+      
+      Cookies.set('loggedInUser', data.username)
+    }
   };
 
   return (
