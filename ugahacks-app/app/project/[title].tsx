@@ -2,12 +2,18 @@
 
 import React from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 const ProjectPage: React.FC = () => {
+  const router = useRouter();
+  const { title } = router.query;
+
   return (
     <div className="flex flex-col justify-start items-center h-screen bg-gray-100">
+      <h1>Project Page</h1>
+      <p>Project Title: {title}</p>
       <div className="text-center mt-10">
-        <h2 className="text-3xl font-bold mb-4">Project Title</h2>
+        <h2 className="text-3xl font-bold mb-4">{title}</h2>
         <p className="text-lg mb-6">This is a brief project description that tells pioneers what they're putting their money towards</p>
       </div>
       <div className="flex w-2/3 mt-10">
