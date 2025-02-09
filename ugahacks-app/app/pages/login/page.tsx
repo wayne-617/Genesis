@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import LoginButton from '@/components/LoginButton';
-import RetrieveFile from '../../../components/RetrieveFile';
+import RetrieveFile from '@/components/RetrieveFile';
 
 const LoginPage: React.FC = () => {
   const [username, setUsername] = useState('');
@@ -16,7 +16,7 @@ const LoginPage: React.FC = () => {
 
   return (
     <div className="flex flex-col justify-center items-center h-screen bg-gray-100">
-      <div className="bg-white text-gray-800 rounded-lg shadow-lg p-8 w-96">
+      <div className="bg-white text-gray-800 rounded-lg shadow-lg p-10 w-1/3">
         <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
         <form onSubmit={handleSubmit}>
           <label className="input input-bordered flex items-center gap-2 mb-4">

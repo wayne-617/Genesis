@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Navbar from "@/components/Navbar";
-import { Auth0Provider } from '@auth0/auth0-react';
+import Footer from "@/components/Footer";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -19,16 +19,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Auth0Provider
-          domain={process.env.NEXT_PUBLIC_AUTH0_DOMAIN!}
-          clientId={process.env.NEXT_PUBLIC_AUTH0_CLIENT_ID!}
-          authorizationParams={{
-            redirect_uri: process.env.NEXT_PUBLIC_AUTH0_REDIRECT_URI!
-          }}
-        >
           <Navbar />
           {children}
-        </Auth0Provider>
+          <Footer />
       </body>
     </html>
   );
