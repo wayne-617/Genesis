@@ -28,8 +28,9 @@ const ProfilePage: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center h-screen">
-      <h1 className="text-3xl font-bold mb-24">Profile</h1>
+    <div className="flex flex-col flex-grow justify-center items-center h-screen">
+      <h1 className="text-3xl font-bold mb-16">Profile</h1>
+      <h2 className='text-2xl font-bold mb-8'> 1,000 Projects Contributed to</h2>
       <div className="flex flex-row justify-center items-center">
         <div role="tablist" className="tabs tabs-lifted">
           {/* Tab 1 */}

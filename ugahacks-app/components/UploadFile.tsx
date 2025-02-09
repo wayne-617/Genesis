@@ -6,6 +6,7 @@ interface UploadFileProps {
   email: string;
   username: string;
   password: string;
+  wallets: string[];
 }
 
 export const uploadToPinata = async (email: string, username: string, password: string) => {
@@ -14,6 +15,7 @@ export const uploadToPinata = async (email: string, username: string, password: 
     email: email,
     username: username,
     password: password,
+    wallets: [],
   };
   
   try {
