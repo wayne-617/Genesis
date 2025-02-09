@@ -11,6 +11,7 @@ interface UploadFileProps {
 
 export const uploadToPinata = async (email: string, username: string, password: string) => {
   const url = `https://api.pinata.cloud/pinning/pinJSONToIPFS`;
+  
   const jsonData = {
     email: email,
     username: username,
