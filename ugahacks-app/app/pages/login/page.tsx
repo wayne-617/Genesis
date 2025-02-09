@@ -1,16 +1,25 @@
 'use client';
 
 import React, { useState } from 'react';
-import RetrieveFile from '../../../components/RetrieveFile';
+import { retrieveFromPinata } from '@/components/RetrieveFile';
 
 const LoginPage: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [loginSuccess, setLoginSuccess] = useState<boolean | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
+    //username, password, handleRetrieve
+    await retrieveFromPinata("QmTFnYhTrDaFubxgFVsjWf1vtcFZNa7RH8RhuE836oVynC");
+  };
+
+  const handleRetrieve = (success: boolean) => {
+    
+    setLoginSuccess(success);
+    setSubmitted(false);
   };
 
   return (
@@ -57,8 +66,8 @@ const LoginPage: React.FC = () => {
           <button type="submit" className="btn btn-primary w-full">Login</button>
         </form>
         <h3 className="text-center mt-4">Don't have an account? <a href="/pages/signup" className="text-primary">Sign Up</a></h3>
+        {loginSuccess === false && <p className="text-red-500 mt-4">Login failed. Please check your username and password.</p>}
       </div>
-      {submitted && <RetrieveFile username={username} password={password} />}
     </div>
   );
 };

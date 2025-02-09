@@ -15,7 +15,7 @@ export const uploadToPinata = async (email: string, username: string, password: 
     username: username,
     password: password,
   };
-
+  
   try {
     const response = await fetch(url, {
       method: 'POST',
@@ -32,6 +32,8 @@ export const uploadToPinata = async (email: string, username: string, password: 
     }
 
     const result = await response.json();
+
+    console.log(result.IpfsHash);
     return result;
   } catch (error) {
     console.error('Error uploading to Pinata:', error);
@@ -42,7 +44,7 @@ export const uploadToPinata = async (email: string, username: string, password: 
 const UploadFile: React.FC<UploadFileProps> = ({ email, username, password }) => {
   const [uploading, setUploading] = useState(false);
   const [cid, setCid] = useState<string | null>(null);
-
+  
   const handleUpload = async () => {
     try {
       setUploading(true);
@@ -53,9 +55,9 @@ const UploadFile: React.FC<UploadFileProps> = ({ email, username, password }) =>
       console.error('Upload failed:', error);
       setUploading(false);
     }
-    console.log(cid);
+    
   };
-
+  console.log(cid);
   return (
     <div className="flex flex-col items-center">
       <button onClick={handleUpload} className="btn btn-primary">
