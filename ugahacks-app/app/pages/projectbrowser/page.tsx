@@ -35,14 +35,14 @@ const ProjectBrowserPage: React.FC = () => {
     loadProjects();
   }, []);
 
-  const cards = [
-    { title: 'Project 1', image: '/logo.png', desc: 'Description for card 1' },
-    { title: 'Project 2', image: '/logo.png', desc: 'Description for card 2' },
-    { title: 'Card 3', image: '/landscape.png', desc: 'Description for card 3' },
-    { title: 'Card 4', image: '/logo.png', desc: 'Description for card 4' },
-    { title: 'Card 5', image: '/logo.png', desc: 'Description for card 5' },
-    // Add more cards as needed
-  ];
+  // const cards = [
+  //   { title: 'Project 1', image: '/logo.png', desc: 'Description for card 1' },
+  //   { title: 'Project 2', image: '/logo.png', desc: 'Description for card 2' },
+  //   { title: 'Card 3', image: '/landscape.png', desc: 'Description for card 3' },
+  //   { title: 'Card 4', image: '/logo.png', desc: 'Description for card 4' },
+  //   { title: 'Card 5', image: '/logo.png', desc: 'Description for card 5' },
+  //   // Add more cards as needed
+  // ];
 
   const handleCardClick = (project:Project) => {
     Cookies.set('selectedProject', String(project.id));
