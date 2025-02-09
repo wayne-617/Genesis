@@ -66,23 +66,23 @@ export async function getAllProjects(): Promise<Project[]> {
   }));
 }
 
-export async function getProject(projectId: number): Promise<Project> {
-  if (!contract) throw new Error('Ethereum provider not initialized.');
-  const project = await contract.getProject(projectId);
-  return {
-    id: project.id.toNumber(),
-    creator: project.creator,
-    title: project.title,
-    description: project.description,
-    image: project.image,
-    goalAmount: project.goalAmount.toNumber(),
-    raisedAmount: project.raisedAmount.toNumber(),
-    amountWithdrawn: project.amountWithdrawn.toNumber(),
-    supportingVotes: project.supportingVotes.toNumber(),
-    deadline: project.deadline.toNumber(),
-    isActive: project.isActive,
-  };
-}
+// export async function getProject(projectId: number): Promise<Project> {
+//   if (!contract) throw new Error('Ethereum provider not initialized.');
+//   const project = await contract.getProject(projectId);
+//   return {
+//     id: project.id.toNumber(),
+//     creator: project.creator,
+//     title: project.title,
+//     description: project.description,
+//     image: project.image,
+//     goalAmount: project.goalAmount.toNumber(),
+//     raisedAmount: project.raisedAmount.toNumber(),
+//     amountWithdrawn: project.amountWithdrawn.toNumber(),
+//     supportingVotes: project.supportingVotes.toNumber(),
+//     deadline: project.deadline.toNumber(),
+//     isActive: project.isActive,
+//   };
+// }
 
 export async function getContribution(projectId: number, contributor: string): Promise<number> {
   if (!contract) throw new Error('Ethereum provider not initialized.');
