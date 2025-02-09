@@ -4,8 +4,16 @@ import React from 'react';
 
 const IndexPage: React.FC = () => {
   return (
-    <div className="flex justify-center items-center h-screen">
-      <h1 className="text-3xl font-bold">Home</h1>
+    <div className="hero bg-white min-h-screen">
+      <div className="hero-content text-center bg-neutral rounded-lg p-12">
+        <div className="max-w-md">
+          <h1 className="text-5xl font-bold">Hello there</h1>
+          <p className="py-6">
+            Welcome to Genesis! Your way of funding projects that you care about.
+          </p>
+          <button className="btn btn-primary">Get Started</button>
+        </div>
+      </div>
     </div>
   );
 };

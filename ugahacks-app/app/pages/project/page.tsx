@@ -23,7 +23,8 @@ const ProjectPage: React.FC = () => {
     setError(null);
 
     try {
-      await fundProject(project.id, amount * 10 ** 18);
+
+      await fundProject(project.id, amount);
       alert('Project funded successfully!');
     } catch (err) {
       setError('Failed to fund project. Please try again.');
@@ -81,10 +82,10 @@ const ProjectPage: React.FC = () => {
           <h1 className="card-title text-3xl font-bold">{project.title}</h1>
           <Image src={project.image} alt={project.title} width={250} height={150} className="rounded-lg" />
           <p className="text-lg"><strong>Description:</strong> {project.description}</p>
-          <p className="text-lg"><strong>Goal Amount:</strong> {project.goalAmount.toString()}</p>
-          <p className="text-lg"><strong>Raised Amount:</strong> {project.raisedAmount.toString()}</p>
+          <p className="text-lg"><strong>Goal Amount:</strong> {(project.goalAmount/(10**18)).toString()} ETH</p>
+          <p className="text-lg"><strong>Raised Amount:</strong> {(project.raisedAmount/(10**18)).toString()} ETH</p>
           <p className="text-lg"><strong>Amount Withdrawn:</strong> {project.amountWithdrawn.toString()}</p>
-          <p className="text-lg"><strong>Supporting Votes:</strong> {project.supportingVotes.toString()}</p>
+          <p className="text-lg"><strong>Supporting Votes:</strong> {(project.supportingVotes/project.raisedAmount*100).toString()}%</p>
           <div className="card-actions justify-end mt-4 flex items-center space-x-2">
             <form className="form flex items-center space-x-2" onSubmit={handleSubmit}>
               <input 
