@@ -1,36 +1,51 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Card from '@/components/Card';
+import { getAllProjects } from '@/utils/viem';
+import { Project } from '@/utils/types';
 
 const ProfilePage: React.FC = () => {
   const [activeTab, setActiveTab] = useState(1); // Track active tab
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
-  interface Card {
-    title: string;
-    image: string;
-    desc: string;
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const allProjects = await getAllProjects();
+        setProjects(allProjects);
+      } catch (err) {
+        const error = err as Error;
+        console.error('Failed to load projects:', error.message);
+        setError('Failed to load projects: ' + error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProjects();
+  }, []);
+
+  const handleCardClick = (id: number) => {
+    router.push(`/project?id=${id}`);
+  };
+
+  if (loading) {
+    return <div className="flex justify-center items-center h-screen">Loading...</div>;
   }
 
-  const cards: Card[] = [
-    { title: 'Project 1', image: '/logo.png', desc: 'Description for card 1' },
-    { title: 'Project 2', image: '/logo.png', desc: 'Description for card 2' },
-    { title: 'Card 3', image: '/landscape.png', desc: 'Description for card 3' },
-    { title: 'Card 4', image: '/logo.png', desc: 'Description for card 4' },
-    { title: 'Card 5', image: '/logo.png', desc: 'Description for card 5' },
-    // Add more cards as needed
-  ];
-
-  const handleCardClick = (title: string) => {
-    router.push(`/project?title=${encodeURIComponent(title)}`);
-  };
+  if (error) {
+    return <div className="flex justify-center items-center h-screen">{error}</div>;
+  }
 
   return (
     <div className="flex flex-col flex-grow justify-center items-center h-screen">
       <h1 className="text-3xl font-bold mb-16">Profile</h1>
-      <h2 className='text-2xl font-bold mb-8'> 1,000 Projects Contributed to</h2>
+      <h2 className='text-2xl font-bold mb-8'>1,000 Projects Contributed to</h2>
       <div className="flex flex-row justify-center items-center">
         <div role="tablist" className="tabs tabs-lifted">
           {/* Tab 1 */}
@@ -45,9 +60,9 @@ const ProfilePage: React.FC = () => {
             {activeTab === 1 && (
               <div className="flex justify-center">
                 <div className="carousel carousel-center rounded-box w-2/3">
-                  {cards.map((card: Card, index: number) => (
+                  {projects.map((project: Project, index: number) => (
                     <div className="carousel-item p-6" key={index}>
-                      <Card title={card.title} image={card.image} desc={card.desc} onClick={() => handleCardClick(card.title)} />
+                      <Card title={project.title} image={project.image} desc={project.description} onClick={() => handleCardClick(project.id)} />
                     </div>
                   ))}
                 </div>
@@ -66,9 +81,9 @@ const ProfilePage: React.FC = () => {
             {activeTab === 2 && (
               <div className="flex justify-center">
                 <div className="carousel carousel-center rounded-box w-2/3">
-                  {cards.map((card: Card, index: number) => (
+                  {projects.map((project: Project, index: number) => (
                     <div className="carousel-item p-6" key={index}>
-                      <Card title={card.title} image={card.image} desc={card.desc} onClick={() => handleCardClick(card.title)} />
+                      <Card title={project.title} image={project.image} desc={project.description} onClick={() => handleCardClick(project.id)} />
                     </div>
                   ))}
                 </div>
