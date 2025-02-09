@@ -41,7 +41,7 @@
   }
 
   button {
-    @apply font-telegraf font-bold;
+    @apply font-agrandir font-bold;
   }
 
 }
