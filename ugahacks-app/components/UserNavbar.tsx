@@ -2,6 +2,8 @@
 
 import React from 'react';
 import { useRouter } from 'next/navigation';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 const Navbar: React.FC = () => {
   const router = useRouter();
@@ -70,6 +72,9 @@ const Navbar: React.FC = () => {
             </svg>
             <span className="badge badge-xs badge-primary indicator-item"></span>
           </div>
+        </button>
+        <button className="btn btn-circle btn-primary">
+            <FontAwesomeIcon icon={faUser} className="h-5 w-5" />
         </button>
       </div>
     </div>

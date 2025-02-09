@@ -22,8 +22,8 @@ const ProjectPage: React.FC = () => {
         </div>
         <div className="w-1/2 pl-10 flex flex-col justify-between">
           <div className='flex flex-col justify-start'>
-            <p className="text-lg mt-16">Project Goal: $10,000</p>
-            <progress className="progress progress-primary w-56" value={50} max="100"></progress>
+            <p className="text-lg mt-16">$5,000/$10,000 raised</p>
+            <progress className="progress progress-primary w-56 h-4 mt-4" value={50} max="100"></progress>
           </div>
           <div className='flex flex-col justify-end'>
             <button className='btn btn-primary mb-4'>Support this Project</button>
