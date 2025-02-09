@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import Cookies from 'js-cookie';
+import { connect } from 'http2';
 
 const UserNavbar: React.FC = () => {
   const router = useRouter();
@@ -34,6 +35,10 @@ const UserNavbar: React.FC = () => {
           status: 'Wallet connected successfully!',
           connected: true,
         });
+        
+        if(accounts[0]){
+          Cookies.set('wallAddress', accounts[0])
+        }
       } catch (error: any) {
         setWalletInfo({
           address: '',
