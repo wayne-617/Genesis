@@ -7,18 +7,19 @@ const LoginPage: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const[retrievedData, setRetreivedData] = useState<any | null>(null);
   const [loginSuccess, setLoginSuccess] = useState<boolean | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
     //username, password, handleRetrieve
-    await retrieveFromPinata("QmTFnYhTrDaFubxgFVsjWf1vtcFZNa7RH8RhuE836oVynC");
+    await retrieveFromPinata(username,password,handleRetrieve);
   };
 
-  const handleRetrieve = (success: boolean) => {
-    
+  const handleRetrieve = (success: boolean, data?: any) => {
     setLoginSuccess(success);
+    setRetreivedData(data);
     setSubmitted(false);
   };
 
