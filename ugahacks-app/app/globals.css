@@ -11,6 +11,13 @@
   font-weight: 100 900;
   src: url("../fonts/TelegrafVariable.woff2") format("woff2");
 }
+
+@font-face {
+  font-family: "Bungee Shade";
+  font-style: normal;
+  font-weight: 100 900;
+  src: url("../fonts/BungeeShade-Regular.ttf") format("ttf");
+}
 @tailwind base;
 @layer base {
   :root {
@@ -32,6 +39,7 @@
   h1, h2, h3, h4 {
     @apply font-agrandir font-bold;
   }
+
   h1 {
     @apply text-5xl;
   }
