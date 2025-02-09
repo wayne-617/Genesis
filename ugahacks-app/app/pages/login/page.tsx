@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { retrieveFromPinata } from '@/components/RetrieveFile';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
+import { updateFromPinata } from '@/components/UpdateFile';
 
 const LoginPage: React.FC = () => {
   const [username, setUsername] = useState('');
@@ -19,13 +20,18 @@ const LoginPage: React.FC = () => {
     await retrieveFromPinata(username, password, handleRetrieve);
   };
 
-  const handleRetrieve = (success: boolean, data?: any) => {
+  const handleRetrieve = async (success: boolean, data?: any) => {
     setLoginSuccess(success);
     setRetrievedData(data);
     setSubmitted(false);
     if (success) {
       Cookies.set('loggedInUser', data.username);
       window.location.href = '/pages/home'; // This will navigate to the homepage and refresh the window
+      // try {
+      //   //await updateFromPinata("123@gmail.com", "123", "123", ["0x00a3454ceB0b8285492915437717e1948DE318B4"], "QmTFnYhTrDaFubxgFVsjWf1vtcFZNa7RH8RhuE836oVynC");
+      // } catch (error) {
+      //   console.error('Error updating Pinata:', error);
+      // }
     }
   };
 
