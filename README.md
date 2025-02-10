@@ -57,9 +57,24 @@ Create a new Pinata project using this command:
 ```
 npx create-pinata-app
 ```
-Follow the prompts in the command line to create the project. Once complete, change into the new project directory and run the app with the following command:
-```
-npm run dev
-```
+# Change Log
 
+## 2025-02-7
+ 
+### Added
+* set up daisyui
+* set up next.js files
 
+## 2025-02-8
+### Added
+* Added basic signup form
+* Added ui elements and pages
+* Set up about page
+
+### Fixed
+* Fixed text input color of signup
+
+## 2025-02-9
+
+### Added
+* Added load project function
