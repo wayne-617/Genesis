@@ -1,4 +1,4 @@
-# UGAHacksX Project
+# Genesis
 
 This project is a web application developed for UGAHacksX.
 
